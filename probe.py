@@ -1,0 +1,1 @@
+print('mai she trygne')
