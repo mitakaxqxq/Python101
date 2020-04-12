@@ -162,15 +162,19 @@ class TestPlaylistMethods(unittest.TestCase):
 
         self.assertTrue(myDict == expectedDict,'Dictionaries are equal')
         
-    '''def test_saving_and_loading_object_from_a_json_file(self):
+    def test_saving_and_loading_object_from_a_json_file(self):
 
         playlist1 = Playlist("For Code",True,True)
         playlist1.listOfSongs = [Song("Odin","Manowar","The Sons of Odin","3:44"),Song("Little Swing","AronChupa","I'm an Albatraoz","3:50"),Song("Hole in the Roof","AronChupa","I'm an Albatraoz","3:20")]
         playlist1.save()
-        print(playlist1.__dict__)
+        
+        #print(playlist1.__dict__)
+        
         result = playlist1.load('./playlist-data/For-Code.json')
+        
         print(result)
-        self.assertTrue(json.dumps(playlist1.__dict__)   == result, 'Dictionaries are equal')'''
+        
+        self.assertTrue(playlist1.__dict__ == result, 'Dictionaries are equal')
 
 if __name__ == '__main__':
     unittest.main()

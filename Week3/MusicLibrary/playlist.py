@@ -114,11 +114,15 @@ class Playlist:
         fileName = self.name.replace(' ','-')
         pathToFile = './playlist-data/' + fileName + '.json'
         with open(pathToFile,'w') as f:
-            json.dump(self.__dict__,f,default=Song.__str__)
+            x = self.__dict__
+            x['listOfSongs'] = [str(song) for song in self.listOfSongs]
+            json.dump(x, f)
+            #json.dump(self.__dict__,f,default=Song.__str__)
 
     def load(self,path):
         with open(path,'r') as f:
             myPlaylist = json.load(f)
+            #print(myPlaylist)
             return myPlaylist
 '''
 playlist = Playlist("For Code",True,False)
@@ -129,4 +133,5 @@ print(playlist.next_song())
 print(playlist.next_song())
 playlist.save()
 playlist.load('./playlist-data/For-Code.json')
+print(playlist)
 '''
