@@ -87,9 +87,6 @@ def convert_string_to_term(string):
             myPower = 1
         else:
             myPower = 0
-
-    print(myCoefficient)
-    print(myPower)
     
     return Term(int(myCoefficient),int(myPower))
 
@@ -101,23 +98,6 @@ def convert_string_into_polynomial(string):
         listOfTerms.append(convert_string_to_term(elem))
     myPolynomial = Polynomial(listOfTerms)
     return myPolynomial
-
-def find_derivative_of_polynomial(polynomial):
-
-    oldListOfTerms = polynomial.terms
-    newListOfTerms = []
-    
-    for term in oldListOfTerms:
-        newCoefficient = term.coefficient * term.power
-        newPower = term.power - 1
-        if newPower < 0:
-            newListOfTerms.append(Term(0,0))
-        else:
-            newListOfTerms.append(Term(newCoefficient,newPower))
-
-    newListOfTerms = [elem for elem in newListOfTerms if elem.power >= 0]
-
-    return Polynomial(newListOfTerms)
 
 def main():
     print(convert_string_to_term('123*x'))

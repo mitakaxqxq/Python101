@@ -67,3 +67,22 @@ class Polynomial:
         if otherHelper != []:
             return False
         return True
+
+    def derivative(self):
+        oldListOfTerms = self.terms
+        newListOfTerms = []
+        
+        for term in oldListOfTerms:
+            newCoefficient = term.coefficient * term.power
+            newPower = term.power - 1
+            if newPower < 0:
+                newListOfTerms.append(Term(0,0))
+            else:
+                newListOfTerms.append(Term(newCoefficient,newPower))
+
+        newListOfTerms = [elem for elem in newListOfTerms if elem.power >= 0]
+
+        return str(Polynomial(newListOfTerms))
+
+p = Polynomial([Term(1,20),Term(7,8),Term(4,6),Term(3,5)])
+print(p.derivative())

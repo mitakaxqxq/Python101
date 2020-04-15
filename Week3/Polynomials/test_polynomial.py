@@ -115,5 +115,47 @@ class TestPolynomial(unittest.TestCase):
 
         self.assertTrue(result == expected)
 
+class TestFindingDerivativeOfPolynomial(unittest.TestCase):
+    def test_when_there_are_only_terms_with_both_coefficient_and_power(self):
+
+        expected = Polynomial([Term(240,19),Term(7820,781),Term(6888,55)])
+
+        test_polynomial = Polynomial([Term(12,20),Term(123,56),Term(10,782)])
+        result = test_polynomial.derivative()
+        self.assertTrue(str(expected) == result)
+
+    def test_when_there_are_only_terms_with_coefficients_and_power_one(self):
+
+        expected = Polynomial([Term(12,0),Term(123,0),Term(10,0)])
+
+        test_polynomial = Polynomial([Term(12,1),Term(123,1),Term(10,1)])
+        result = test_polynomial.derivative()
+        self.assertTrue(str(expected) == result)
+
+    def test_when_there_are_only_terms_with_powers_and_coefficient_one(self):
+
+        expected = Polynomial([Term(20,19),Term(782,781),Term(2,1)])
+
+        test_polynomial = Polynomial([Term(1,20),Term(1,782),Term(1,2)])
+        result = test_polynomial.derivative()
+        self.assertTrue(str(expected) == result)
+
+    def test_when_there_are_only_terms_with_power_zero(self):
+
+        expected = Polynomial([Term(0,0),Term(0,0),Term(0,0)])
+
+        test_polynomial = Polynomial([Term(121212,0),Term(11111,0),Term(999,0)])
+        result = test_polynomial.derivative()
+        self.assertTrue(str(expected) == result)
+
+    def test_with_a_polynomial_of_random_types_of_terms(self):
+
+        expected = Polynomial([Term(240,19),Term(0,0),Term(782,781),Term(123,0)])
+
+        test_polynomial = Polynomial([Term(12,20),Term(123,1),Term(1,782),Term(12211,0)])
+        result = test_polynomial.derivative()
+
+        self.assertTrue(str(expected) == result)
+
 if __name__ == '__main__':
     unittest.main()

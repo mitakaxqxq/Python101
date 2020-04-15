@@ -1,5 +1,5 @@
 import sys
-from utils import break_down_into_list_of_strings,convert_string_to_term,convert_string_into_polynomial,find_derivative_of_polynomial
+from utils import break_down_into_list_of_strings,convert_string_to_term,convert_string_into_polynomial
 
 def main():
     args = sys.argv[1]
@@ -8,7 +8,7 @@ def main():
 
     print('The derivative of f(x) = '+args+' is:')
 
-    print('f`(x) = ' + str(find_derivative_of_polynomial(myPolynomial)))
+    print('f`(x) = ' + myPolynomial.derivative())
 
 
 if __name__ == '__main__':
