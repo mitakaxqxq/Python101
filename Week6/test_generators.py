@@ -1,33 +1,14 @@
 import unittest
+import itertools
 from generators import *
 
 
 class TestChainGenerator(unittest.TestCase):
 
-    def test_raises_exception_when_first_object_in_chain_is_not_iterable(self):
-        exc = None
-        try:
-            chain(1, [1, 2, 3])
-        except Exception as err:
-            exc = err
-
-        self.assertIsNotNone(exc)
-        self.assertEqual(str(exc), 'Argument 1 not of type Iterable')
-
-    def test_raises_exception_when_second_object_in_chain_is_not_iterable(self):
-        exc = None
-        try:
-            chain([1, 2], 3)
-        except Exception as err:
-            exc = err
-
-        self.assertIsNotNone(exc)
-        self.assertEqual(str(exc), 'Argument 2 not of type Iterable')
-
     def test_raises_exception_when_objects_types_are_not_equal(self):
         exc = None
         try:
-            chain([1, 2], {1: 2})
+            list(chain([1, 2], {1: 2}))
         except Exception as err:
             exc = err
 
@@ -40,6 +21,34 @@ class TestChainGenerator(unittest.TestCase):
 
         self.assertEqual(result, expected)
 
+
+class TestCompressGenerator(unittest.TestCase):
+
+    def test_raises_exception_when_value_in_mask_is_not_bool(self):
+        exc = None
+        try:
+            list(compress(["Ivo", "Rado", "Panda"], ['as', False, True]))
+        except Exception as err:
+            exc = err
+
+        self.assertIsNotNone(exc)
+        self.assertEqual(str(exc), 'Object in mask is not bool!')
+
+    def test_passes_with_correct_values_in_mask(self):
+        result = list(compress(["Ivo", "Rado", "Panda"], [False, False, True]))
+        expected = ["Panda"]
+
+        self.assertTrue(expected == result, 'Lists are equal')
+
+
+class TestCycleGenerator(unittest.TestCase):
+
+    def test_cycle_with_islice(self):
+        endless = cycle([1, 2, 3])
+        expected = [1, 2, 3, 1, 2, 3]
+        result = list(itertools.islice(endless, 6))
+
+        self.assertEqual(result, expected)
 
 if __name__ == '__main__':
     unittest.main()
