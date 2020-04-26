@@ -59,11 +59,12 @@ def solve():
     initial_state = list(starting_frogs)
     result = find_correct_solution([initial_state], list(ending_frogs))
     list_of_strings = convert_list_of_lists_into_list_of_strings(result)
-    print_solution_path(list_of_strings)
+    return list_of_strings
 
 
 def main():
-    solve()
+    final_steps = solve()
+    print_solution_path(final_steps)
 
 
 if __name__ == '__main__':
