@@ -52,8 +52,10 @@ def print_solution_path(list):
 
 def solve():
     number_of_frogs = int(input("Enter the number of frogs you want: "))
-    left_frogs = number_of_frogs * '>'
-    right_frogs = number_of_frogs * '<'
+    if number_of_frogs % 2 == 1:
+        raise ValueError('Wrong value - you must enter an even number greater than 2!')
+    left_frogs = number_of_frogs // 2 * '>'
+    right_frogs = number_of_frogs // 2 * '<'
     starting_frogs = left_frogs + '_' + right_frogs
     ending_frogs = right_frogs + '_' + left_frogs
     initial_state = list(starting_frogs)
