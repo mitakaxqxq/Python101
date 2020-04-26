@@ -34,15 +34,10 @@ def deep_find_all_bfs(data, key):
             result_of_bfs.append(data_value)
 
         if isinstance(data_value, dict):
-            for value in list(data_value.items()):
-                list_data.append(value)
+            list_data.extend(data_value.items())
         elif isinstance(data_value, Iterable) and not isinstance(data_value, str):
             for value in data_value:
                 if not isinstance(value, dict):
                     raise AttributeError("Type of iterable objects's values must be dictionaries!")
-                for elem in list(value.items()):
-                    list_data.append(elem)
+                list_data.extend(value.items())
     return result_of_bfs
-
-
-print(deep_find_all_bfs({1: 2, 3: 4, 5: [{4: 2, 5: 8}, {4: 229, 7: 89}], 4: 98}, 4))
