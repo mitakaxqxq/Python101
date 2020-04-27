@@ -1,13 +1,15 @@
-def move_frog_to_lilly(board, index, move, positions, frog):
-    new_list = board[:]
-    new_list[index] = '_'
-    new_list[move] = frog
-    positions.append(new_list)
+def move_frog_to_lilly(lake, index, move, positions, frog):
+    if not move < 0 and not move >= len(lake):
+        if lake[move] == '_':
+            new_list = lake[:]
+            new_list[index] = '_'
+            new_list[move] = frog
+            positions.append(new_list)
 
 
-def find_all_possible_positions(board):
+def find_all_possible_positions(lake):
     positions = []
-    for index, frog in enumerate(board):
+    for index, frog in enumerate(lake):
         if frog == '>':
             single_move = index + 1
             jump_move = index + 2
@@ -16,12 +18,8 @@ def find_all_possible_positions(board):
             jump_move = index - 2
         else:
             continue
-        if not single_move < 0 and not single_move >= len(board):
-            if board[single_move] == '_':
-                move_frog_to_lilly(board, index, single_move, positions, frog)
-        if not jump_move < 0 and not jump_move >= len(board):
-            if board[jump_move] == '_':
-                move_frog_to_lilly(board, index, jump_move, positions, frog)
+        move_frog_to_lilly(lake, index, single_move, positions, frog)
+        move_frog_to_lilly(lake, index, jump_move, positions, frog)
     return positions
 
 
