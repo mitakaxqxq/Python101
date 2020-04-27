@@ -1,0 +1,2 @@
+ALTER TABLE Languages
+	ADD COLUMN rating INTEGER;
