@@ -45,3 +45,6 @@ class Solution(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     date = models.DateTimeField()
     url = models.URLField()
+
+    def __str__(self):
+        return f'Solution to Task "{self.task}"'
