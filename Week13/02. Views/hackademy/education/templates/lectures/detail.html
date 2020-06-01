@@ -1,0 +1,17 @@
+{% extends "lectures/base.html" %}
+{% block content %}
+<table style="width:100%">
+    <tr>
+        <th style="text-align:left">Lecture name</th>
+        <th style="text-align:left">Lecture week</th>
+        <th style="text-align:left">Lecture course</th>
+        <th style="text-align:left">Lecture URL presentation date</th>
+    </tr>
+    <tr>
+        <th style="text-align:left">{{lecture.name}}</th>
+        <th style="text-align:left">{{lecture.week}}</th>
+        <th style="text-align:left" href="{% url 'education:courses:detail' lecture.course.id %}">{{lecture.course}}</th>
+        <th style="text-align:left">{{lecture.url}}</th>
+    </tr>
+</table>
+{% endblock %}

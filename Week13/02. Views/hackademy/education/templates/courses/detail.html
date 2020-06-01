@@ -1,0 +1,19 @@
+{% extends "courses/base.html" %} {% block content %}
+<h2>Information about course "{{ course.name }}"</h2>
+<table style="width:100%">
+    <tr>
+        <th style="text-align:left">Course id</th>
+        <th style="text-align:left">Course description</th>
+        <th style="text-align:left">Course start date</th>
+        <th style="text-align:left">Course end date</th>
+    </tr>
+    <tr>
+        <th style="text-align:left">{{course.id}}</th>
+        <th style="text-align:left">{{course.description}}</th>
+        <th style="text-align:left">{{course.start_date}}</th>
+        <th style="text-align:left">{{course.end_date}}</th>
+    </tr>
+</table>
+<a href="{% url 'education:courses:edit' course.id %}">Edit</a>
+<h2>Lectures for this course</h2>
+{% endblock %}
